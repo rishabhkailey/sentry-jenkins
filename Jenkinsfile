@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node' 
-            // args '-p 5000:5000' 
-        }
-    }
+    agent any
     stages {
         // stage('Build') {
         //     steps {
