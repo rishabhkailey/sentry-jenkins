@@ -6,7 +6,7 @@ pipeline {
         }
     }
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
                 sh 'npm install' 
             }
@@ -36,6 +36,9 @@ pipeline {
         }
         stage('test sentry') {
             sh 'curl http://localhost:5000/getError'
+        }
+        stage('stop') {
+            sh 'killall node'
         }
     }
 }
