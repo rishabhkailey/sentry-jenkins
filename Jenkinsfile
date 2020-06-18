@@ -52,7 +52,7 @@ pipeline {
             sh 'echo "stoping and removing container"'
             sh 'docker stop node_container'
             sh 'docker rm node_container'
-            sh "container stoped and removed"
+            sh 'echo "container stoped and removed"'
         }
     }
 }
