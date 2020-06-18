@@ -26,7 +26,6 @@ pipeline {
             } 
             steps {
                 sh 'curl -sL https://sentry.io/get-cli/ | bash'
-
                 sh '''
                     export SENTRY_RELEASE=$(sentry-cli releases propose-version)
                     sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
@@ -42,11 +41,18 @@ pipeline {
                 sh 'curl http://localhost:5000/getError'            
             }
         }
-        stage('stop') {
+        stage('done') {
             steps {
-                sh 'docker stop node_container'
-                sh 'docker rm node_container'
+                sh 'echo "done"'
             }
+        }
+    }
+    post {
+        always {
+            sh 'echo "stoping and removing container"'
+            sh 'docker stop node_container'
+            sh 'docker rm node_container'
+            sh "container stoped and removed"
         }
     }
 }
