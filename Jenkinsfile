@@ -17,8 +17,10 @@ pipeline {
         //     }
         // }
         stage('start_docker') {
-            sh 'docker build -t node_image .'
-            sh 'docker run --name node_container -d -p 5000:5000 node_image'
+            steps {
+                sh 'docker build -t node_image .'
+                sh 'docker run --name node_container -d -p 5000:5000 node_image'
+            }
         }
         stage('Notify_Sentry') {
             environment {
