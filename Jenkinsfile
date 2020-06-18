@@ -12,7 +12,9 @@ pipeline {
             }
         }
         stage('run') {
-            sh 'npm start'
+            steps {
+                sh 'npm start'
+            }
         }
         stage('Notify Sentry of deployment') {
             environment {
@@ -35,10 +37,14 @@ pipeline {
             }
         }
         stage('test sentry') {
-            sh 'curl http://localhost:5000/getError'
+            steps {
+                sh 'curl http://localhost:5000/getError'            
+            }
         }
         stage('stop') {
-            sh 'killall node'
+            steps {
+                sh 'killall node'
+            }
         }
     }
 }
