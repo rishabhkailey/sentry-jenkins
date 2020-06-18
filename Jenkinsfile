@@ -2,19 +2,23 @@ pipeline {
     agent {
         docker {
             image 'node' 
-            args '-p 5000:5000' 
+            // args '-p 5000:5000' 
         }
     }
     stages {
-        stage('Build') {
-            steps {
-                sh 'npm install' 
-            }
-        }
-        stage('run') {
-            steps {
-                sh 'npm start'
-            }
+        // stage('Build') {
+        //     steps {
+        //         sh 'npm install' 
+        //     }
+        // }
+        // stage('run') {
+        //     steps {
+        //         sh 'npm start'
+        //     }
+        // }
+        stage('start_docker') {
+            sh 'docker build -t node_image .'
+            sh 'docker run --name node_container -d -p 5000:5000 node_image'
         }
         stage('Notify_Sentry') {
             environment {
@@ -43,7 +47,8 @@ pipeline {
         }
         stage('stop') {
             steps {
-                sh 'killall node'
+                sh 'docker stop node_container'
+                sh 'docker rm node_container'
             }
         }
     }
