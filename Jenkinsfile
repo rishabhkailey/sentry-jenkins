@@ -16,7 +16,7 @@ pipeline {
                 sh 'npm start'
             }
         }
-        stage('Notify Sentry of deployment') {
+        stage('Notify_Sentry') {
             environment {
                 SENTRY_AUTH_TOKEN = credentials('sentry-sample')
                 SENTRY_ORG = 'sample-organization-slug'
@@ -36,7 +36,7 @@ pipeline {
                 '''
             }
         }
-        stage('test sentry') {
+        stage('generate_error') {
             steps {
                 sh 'curl http://localhost:5000/getError'            
             }
