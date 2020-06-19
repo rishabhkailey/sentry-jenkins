@@ -32,7 +32,7 @@ pipeline {
                 SENTRY_ENVIRONMENT = 'production'
             } 
             steps {
-                sh 'sudo apt install curl'
+                sh 'apt-get install curl'
                 sh 'curl -sL https://sentry.io/get-cli/'
                 sh '''
                     export SENTRY_RELEASE=$(sentry-cli releases propose-version)
