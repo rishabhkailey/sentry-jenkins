@@ -15,6 +15,7 @@ pipeline {
         // }
         stage('start_docker') {
             steps {
+                sh 'cat /etc/os-release'
                 sh 'docker build -t node_image .'
                 sh 'docker run --name node_container -d -p 5000:5000 node_image'
                 sh 'export '
