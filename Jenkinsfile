@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image: alpine:latest
+        }
+    }
     stages {
         // stage('Build') {
         //     steps {
@@ -15,7 +19,7 @@ pipeline {
             steps {
                 sh 'docker build -t node_image .'
                 sh 'docker run --name node_container -d -p 5000:5000 node_image'
-                sh 'ls'
+                sh 'export '
             }
         }
         stage('Notify_Sentry') {
