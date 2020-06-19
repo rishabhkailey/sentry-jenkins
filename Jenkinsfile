@@ -30,7 +30,7 @@ pipeline {
                 SENTRY_ENVIRONMENT = 'production'
             } 
             steps {
-                sh 'curl -sL https://sentry.io/get-cli/ | bash'
+                sh 'curl -sL https://sentry.io/get-cli/'
                 sh '''
                     export SENTRY_RELEASE=$(sentry-cli releases propose-version)
                     sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
