@@ -34,7 +34,7 @@ pipeline {
             steps {
                 sh 'apt-get update'
                 sh 'apt-get -qq -y install curl'
-                sh 'curl -sL https://sentry.io/get-cli/'
+                sh 'curl -sL https://sentry.io/get-cli/ | bash'
                 sh '''
                     export SENTRY_RELEASE=$(sentry-cli releases propose-version)
                     sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
