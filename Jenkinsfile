@@ -5,7 +5,6 @@ pipeline {
             args '--network jenkins --env DOCKER_HOST=tcp://docker:2377' // for dind
         }
     }
-    agent any
     stages {
         // stage('Build') {
         //     steps {
