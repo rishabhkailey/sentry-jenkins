@@ -21,15 +21,13 @@ pipeline {
         stage('Notify_Sentry') {
             environment {
                 SENTRY_AUTH_TOKEN = credentials('sentry-sample')
-                SENTRY_ORG = 'sample-organization-slug'
-                SENTRY_PROJECT = 'sample-project-slug'
+                SENTRY_ORG = 'not-a-number'
+                SENTRY_PROJECT = 'nodejs'
                 SENTRY_ENVIRONMENT = 'production'
             } 
             steps {
                 sh 'curl -sL https://sentry.io/get-cli/ | bash'
                 sh '''
-                    ls
-                    ls -a
                     export SENTRY_RELEASE=$(sentry-cli releases propose-version)
                     sentry-cli releases new -p $SENTRY_PROJECT $SENTRY_RELEASE
                     sentry-cli releases set-commits $SENTRY_RELEASE --auto
