@@ -26,7 +26,7 @@ pipeline {
                 }
             }
             environment {
-                SENTRY_AUTH_TOKEN = credentials('sentry-sample')
+                SENTRY_AUTH_TOKEN = credentials('local-sentry')
                 SENTRY_ORG = 'not-a-number'
                 SENTRY_PROJECT = 'nodejs'
                 SENTRY_ENVIRONMENT = 'production'
