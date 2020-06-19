@@ -32,6 +32,7 @@ pipeline {
                 SENTRY_ENVIRONMENT = 'production'
             } 
             steps {
+                sh 'apt-get update'
                 sh 'apt-get install curl'
                 sh 'curl -sL https://sentry.io/get-cli/'
                 sh '''
