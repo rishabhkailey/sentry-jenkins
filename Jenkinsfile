@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker { 
-            image 'node' 
-            args '--network jenkins --env DOCKER_HOST=tcp://docker:2377' // for dind
-        }
-    }
+    agent any
     stages {
         // stage('Build') {
         //     steps {
@@ -25,6 +20,11 @@ pipeline {
             }
         }
         stage('Notify_Sentry') {
+            agent {
+                docker { 
+                    image 'ubuntu' 
+                }
+            }
             environment {
                 SENTRY_AUTH_TOKEN = credentials('sentry-sample')
                 SENTRY_ORG = 'not-a-number'
