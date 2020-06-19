@@ -29,6 +29,7 @@ pipeline {
                 SENTRY_AUTH_TOKEN = credentials('local-sentry')
                 SENTRY_ORG = 'not-a-number'
                 SENTRY_PROJECT = 'nodejs'
+                SENTRY_ENVIRONMENT = 'production'
             } 
             steps {
                 sh 'apt-get update'
