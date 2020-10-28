@@ -16,7 +16,7 @@ app.get('/', (req, res)=> {
 
 app.get('/getError', (req, res)=> {
     try {
-        abc.def();
+        abc123.def();
     }
     catch(err) {
         Sentry.captureException(err);
